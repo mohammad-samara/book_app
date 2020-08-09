@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>results</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/modules.css">
+</head>
+
+<body>
+    <header>
+        <div id="title1">
+            <h3>Best Books!<h3>
+        </div>
+        <div id="toggleBar">
+            <p class="toggleBtn"></p>
+            <p class="toggleBtn"></p>
+            <p class="toggleBtn"></p>
+        </div>
+    </header>
+    <main>
+        <div id="SubHeader">
+            <p>Search By Title Or Author</p>
+        </div>
+
+        <div id="loadedResults">
+            <% booksResult.forEach(book => { %>
+            <section class="bookInfo">
+                <img class="bookCover" src="<%= book.image %>" alt="">
+                <h2 class="bookTitle"><%= book.title %></h2>
+                <p class="bookAuthor"><%= book.authors %></p>
+                <p class="desc"><%= book.description %></p>
+            </section>
+            <%  })  %>
+        </div>
+
+    </main>
+    <footer></footer>
+</body>
+
+</html>

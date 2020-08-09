@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>find books</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/modules.css">
+</head>
+<body>
+    <header>
+        <div id="title1"><h3>Best Books!<h3></div>
+        <div id="toggleBar">
+            <p class="toggleBtn"></p>
+            <p class="toggleBtn"></p>
+            <p class="toggleBtn"></p>
+        </div>
+    </header>
+    <main>
+        <div id="SubHeader">
+            <p>Search By Title Or Author</p>
+        </div>
+        <form action="/searches" method="POST">
+
+                <input id="searchKey" type="text" name="searchKeyWord" placeholder="Enter a title or author">
+                <div>
+                <label for="sort-title">title</label>
+                <input id="sort-title" type="radio" name="searchType" value="title"> </div>
+                <div>
+                <label for="sort-author">author</label>
+                <input id="sort-author" type="radio" name="searchType" value="author">  </div>
+                <button type="submit">Search The Google Books API</button>
+        </form>
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,96 @@
+
+body{
+    background-color: rgb(85, 84, 84);
+    color: white;
+    text-align: center;
+}
+
+header{
+    background-color: black;
+    color: white;
+    padding: 20px;
+    overflow: auto;
+}
+
+p.toggleBtn{
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 2px;
+    border-radius: 10px;
+}
+#toggleBar{
+    float: right;
+}
+header div{
+    display: inline-block;
+    
+}
+#title1{
+    float: left;
+}
+header h3{
+    display: inline;
+}
+#SubHeader{
+    background-color: rgb(58, 58, 58);
+    padding: 15px;
+}
+form div, #searchKey ,button{
+    width: 75%;
+    margin: 10px auto 10px auto;
+    background-color: rgb(175, 175, 175);
+    text-align: left;
+    height: 35px;
+    color: black;
+    padding-left: 10px;
+}
+#searchKey{
+    background-color: white;
+}
+button{
+    text-align: center;
+    border: none;
+    background-color: black;
+    color: white;
+    margin: auto;
+    width: 280px;
+    padding: 0;
+}
+form div{
+    padding-top: 20px;
+}
+form{
+    padding-top: 10px;
+}
+
+section.bookInfo{
+    background-color: rgb(180, 180, 180);
+    width: 80%;
+    margin: 10px auto 10px auto;
+    padding: 10px 20px 10px 20px;
+    color: rgb(19, 19, 19);
+}
+section.bookInfo .bookTitle{
+    margin-bottom: 5px;
+    color: white;
+}
+section.bookInfo .bookAuthor{
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.welcoming{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: x-large;
+}
+nav ul a{
+    text-decoration: none;
+    font-size: small;
+    color: whitesmoke;
+}
+.navigation{
+    text-align: left;
+    margin-left: 10px;
+}
