@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
+    
 </head>
 
 <body>
@@ -21,16 +22,31 @@
             <p class="toggleBtn"></p>
             <p class="toggleBtn"></p>
         </div>
+        <div class="toggle-menu">
+            <p><a href="/">home</a></p>
+            <p><a href='/search'>Search The Google Books API</a></p>
+        </div>
     </header>
     <main>
-        <div class="welcoming"><h1>hello user</h1></div>
-        <nav>
-            <ul>
-                <li class="navigation"><a href='/search'>search a book</a></li>
-            </ul>
-        </nav>
-    </main>
+        <div class="welcoming"><p id="books-number"><i class="book-num"><%= booksResult.length %></i> books saved</p></div>
 
+        <div class="added">
+            <div id="loadedResults">
+                
+                <% booksResult.forEach(book => { %>
+                <section class="bookInfo">
+                    <img class="bookCover" src="<%= book.image %>" alt="">
+                    <h2 class="bookTitle"><%= book.title %></h2>
+                    <p class="bookAuthor"><%= book.authors %></p>
+                    <!-- <p class="desc"><%= book.description %></p> -->
+                    <button class="view-details">View Details</button>
+                </section>
+                <%  })  %>
+        </div>
+    </main>
+<footer></footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/app.js"></script>
 </body>
 
 </html>

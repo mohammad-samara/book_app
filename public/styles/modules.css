@@ -48,7 +48,7 @@ form div, #searchKey ,button{
 #searchKey{
     background-color: white;
 }
-button{
+button.submit-form{
     text-align: center;
     border: none;
     background-color: black;
@@ -81,16 +81,44 @@ section.bookInfo .bookAuthor{
 }
 
 .welcoming{
-    margin-top: 20px;
     margin-bottom: 20px;
     font-size: x-large;
 }
-nav ul a{
-    text-decoration: none;
-    font-size: small;
-    color: whitesmoke;
+
+/*   main page                  */
+#books-number{
+    background-color: rgb(51, 51, 51);
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
-.navigation{
-    text-align: left;
-    margin-left: 10px;
+.book-num{
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: white;
+    color: rgb(51, 51, 51);
+}
+button.view-details{
+    text-align: center;
+    border: none;
+    background-color: black;
+    color: white;
+    margin: auto;
+    margin-top: 25px;
+    padding: 0;
+}
+.toggle-menu{
+    display: none;
+    clear: both;
+    background-color: rgb(24, 24, 24);
+    padding: 7px;
+    margin-top: 20px;
+}
+.toggle-menu p{
+    margin: 10px;
+}
+.toggle-menu p a{
+    text-decoration: none;
+    color: white;
 }

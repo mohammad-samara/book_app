@@ -14,17 +14,16 @@ const { response, query } = require('express');
 const client = new pg.Client(process.env.DATABASE_URL);
 
 //routes
-app.get('/', (req, res) => {
-res.render('pages/index');
-})
+// app.get('/', (req, res) => {
+// res.render('pages/index');
+// })
 
-app.get('/database', (req, res) => {
+app.get('/', (req, res) => {
     let SQL = `SELECT * FROM books`;
     console.log('hello from route');
     
     client.query(SQL).then(data => {
         let bookArr = data.rows.map(loadSavedData);
-        res.status(200).send(bookArr);
         res.render('pages/index', {booksResult: bookArr});
 
     });
