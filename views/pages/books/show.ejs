@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home page</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/modules.css">
+    
+</head>
+
+<body>
+    <header>
+        <div id="title1">
+            <h3>Best Books!<h3>
+        </div>
+        <div id="toggleBar">
+            <p class="toggleBtn"></p>
+            <p class="toggleBtn"></p>
+            <p class="toggleBtn"></p>
+        </div>
+        <div class="toggle-menu">
+            <p><a href="/">home</a></p>
+            <p><a href='/search'>Search The Google Books API</a></p>
+        </div>
+    </header>
+    <main>
+        <div class="added">
+            <div id="loadedResults">
+                
+                
+                <section class="bookInfo">
+                    <img class="bookCover" src="<%= bookDetail.image_url %>" alt="">
+                    <h2 class="bookTitle"><%= bookDetail.title %></h2>
+                    <p class="bookAuthor"><%= bookDetail.author %></p>
+                    <p class="desc"><%= bookDetail.description %></p>
+                    <p class="isbn"><%= bookDetail.isbn %></p>
+                    <p class="bookshelf">bookshelf: <%= bookDetail.bookshelf %></p>
+                </section>
+                
+        </div>
+    </main>
+<footer></footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+
+</html>

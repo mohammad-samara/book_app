@@ -18,7 +18,7 @@ const client = new pg.Client(process.env.DATABASE_URL);
 // res.render('pages/index');
 // })
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) => {  // home page
     let SQL = `SELECT * FROM books`;
     console.log('hello from route');
     
@@ -48,15 +48,27 @@ function loadSavedData(data){
 }
 
 
-app.get('/search', (req, res) => {
+app.get('/books/:id',showMoreDetails);
+
+function showMoreDetails(req,res) {
+  let SQL = `SELECT * FROM books WHERE id=$1;`;
+  let values = [req.params.id];
+  client.query(SQL, values).then( data=>{
+    res.render("pages/books/show", { bookDetail : data.rows[0]});
+    console.log(data.rows[0]);
+  });
+}
+
+
+app.get('/search', (req, res) => {     //search page
     res.render('pages/searches/new');
 });
 
 
-app.get('/hello', (req, res) => {
+app.get('/hello', (req, res) => {      //test
     res.render('pages/index');
     })
-app.get('/test',(req,res) => {
+app.get('/test',(req,res) => {         //test Google Books API
     let searchType = 'title';
     let keyword = 'harry potter'
     let url = `https://www.googleapis.com/books/v1/volumes?q=in${searchType}:${keyword}}`;
@@ -67,7 +79,7 @@ app.get('/test',(req,res) => {
      });
 
 })
-app.post('/searches', (req,res) => {
+app.post('/searches', (req,res) => {                //search results
     let searchType = req.body.searchType;
     let searchKeyWord = req.body.searchKeyWord;
     getGoogleBooks(searchType, searchKeyWord).then((returnedBooksData) => {

@@ -39,7 +39,8 @@
                     <h2 class="bookTitle"><%= book.title %></h2>
                     <p class="bookAuthor"><%= book.authors %></p>
                     <!-- <p class="desc"><%= book.description %></p> -->
-                    <button class="view-details">View Details</button>
+                    <!-- <button class="view-details">View Details</button> -->
+                    <button class="view-details"><a href="/books/<%= book.id %>">View Details</a></button>
                 </section>
                 <%  })  %>
         </div>

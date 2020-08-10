@@ -21,10 +21,14 @@
             <p class="toggleBtn"></p>
             <p class="toggleBtn"></p>
         </div>
+        <div class="toggle-menu">
+            <p><a href="/">home</a></p>
+            <p><a href='/search'>Search The Google Books API</a></p>
+        </div>
     </header>
     <main>
         <div id="SubHeader">
-            <p>Search By Title Or Author</p>
+            <p>Search Results</p>
         </div>
 
         <div id="loadedResults">
@@ -34,12 +38,15 @@
                 <h2 class="bookTitle"><%= book.title %></h2>
                 <p class="bookAuthor"><%= book.authors %></p>
                 <p class="desc"><%= book.description %></p>
+                <button class="view-details">Select This Book</button>
             </section>
             <%  })  %>
         </div>
 
     </main>
     <footer></footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/app.js"></script>
 </body>
 
 </html>
