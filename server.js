@@ -19,12 +19,14 @@ res.render('pages/index');
 })
 
 app.get('/database', (req, res) => {
+    let SQL = `SELECT * FROM books`;
     console.log('hello from route');
-    let SQL = 'SELECT * FROM books;';
-    client.query(SQL).then((data) => {
-        console.log('hello from client');
-        console.log(data.rows);
-        res.status(200).send(data.rows);
+    
+    client.query(SQL).then(data => {
+        let bookArr = data.rows.map(loadSavedData);
+        res.status(200).send(bookArr);
+        res.render('pages/index', {booksResult: bookArr});
+
     });
     
    // res.render('pages/index', {booksResult: returnedBooksData});
@@ -32,22 +34,18 @@ app.get('/database', (req, res) => {
     });
 
 
-function loadSavedData(req,res){
-    console.log('hello from function');
-    let cashedBooks = `SELECT * FROM books;`;
-    return client.query(cashedBooks).then((data) => {
-        console.log('hello from client');
-        console.log(data.rows);
-        return data.rows;
-        // result.rows.map(SavedBook);
-        // let modifiedResult = {
-        //     "search_query": `${result.rows[i].search_query}`,
-        //     "formatted_query": `${result.rows[i].formatted_query}`,
-        //     "latitude": `${result.rows[i].latitude}`,
-        //     "longitude": `${result.rows[i].longitude}`
-        // }
-        // response.status(200).send(modifiedResult);
-    })
+function loadSavedData(data){
+        
+        let modifiedResult = {
+            "image" : data.image_url,
+            "title" : data.title,
+            "authors" : data.author,
+            "description" : data.description,
+            "ISBN" : data.isbn,
+            "id" : data.id,
+            "bookshelf" : data.bookshelf
+        }
+        return modifiedResult;
 }
 
 
@@ -126,6 +124,9 @@ app.post('/searches', (req,res) => {
         res.render('pages/error.ejs')
     });
 
-app.listen(PORT, () => {
-    console.log(`listening to port ${PORT}`);
+client.connect().then(() => {           // this is a promise and we need to start the server after it connects to the database
+    // app.listen
+    app.listen(PORT, () => {          // to Start the express server only after the database connection is established.
+        console.log('server is listening to the port: ', PORT);
+    });
 });
