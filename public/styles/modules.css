@@ -138,3 +138,7 @@ p.isbn, p.bookshelf{
     margin-bottom: 8px;
     color: rgb(35, 46, 46);
 }
+/* search results */
+form.add-book{
+    display: none;
+}
