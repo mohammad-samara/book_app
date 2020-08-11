@@ -12,6 +12,8 @@ const pg = require('pg');  // sql first step in intializing
 const superagent = require('superagent');
 const { response, query } = require('express');
 const client = new pg.Client(process.env.DATABASE_URL);
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
 
 //routes
 // app.get('/', (req, res) => {
@@ -20,7 +22,7 @@ const client = new pg.Client(process.env.DATABASE_URL);
 
 app.get('/', (req, res) => {  // home page
     let SQL = `SELECT * FROM books`;
-    console.log('hello from route');
+    //console.log('hello from route');
     
     client.query(SQL).then(data => {
         let bookArr = data.rows.map(loadSavedData);
@@ -55,7 +57,7 @@ function showMoreDetails(req,res) {
   let values = [req.params.id];
   client.query(SQL, values).then( data=>{
     res.render("pages/books/show", { bookDetail : data.rows[0]});
-    console.log(data.rows[0]);
+    //console.log(data.rows[0]);
   });
 }
 
@@ -83,7 +85,7 @@ app.post('/searches', (req,res) => {                //search results
     let searchType = req.body.searchType;
     let searchKeyWord = req.body.searchKeyWord;
     getGoogleBooks(searchType, searchKeyWord).then((returnedBooksData) => {
-        console.log(returnedBooksData);
+        //console.log(returnedBooksData);
         res.render('pages/searches/show', {booksResult: returnedBooksData});
 
     })
@@ -115,13 +117,13 @@ app.post('/searches', (req,res) => {                //search results
     };
 
     app.post('/books', (req,res) => {
-        console.log(req.body);
+       // console.log(req.body);
         let SQL = "INSERT INTO books (author, title, isbn, image_url, description, bookshelf) VALUES ($1,$2,$3,$4,$5,$6)";
     let values = [req.body.author, req.body.title, req.body.isbn, req.body.image_url,req.body.description,req.body.bookshelf];
     client.query(SQL, values).then(() => {
         let SQL2 = `SELECT * FROM books;`;
         client.query(SQL2).then(data2=>{
-            console.log(data2.rows[data2.rows.length-1])
+            //console.log(data2.rows[data2.rows.length-1])
             res.render("pages/books/show", { bookDetail : data2.rows[data2.rows.length-1]});
           })
       
@@ -129,6 +131,31 @@ app.post('/searches', (req,res) => {                //search results
     });
        // res.status(200).send(req.body);
     });
+
+    // update and delete
+    app.put('/books/:id', updateBook);
+function updateBook(req, res) {
+    console.log(req.body);
+  let {updatedTitle, updatedAuthor,updatedISBN,updatedImage_url,updatedDescription,updatedBookshelf} = req.body;
+  let sql = `UPDATE books SET title=$1,author=$2,ISBN=$3,image_url=$4,description=$5,bookshelf=$6 WHERE id =$7;`;
+  let newValues = [updatedTitle,updatedAuthor,updatedISBN,updatedImage_url,updatedDescription,updatedBookshelf,req.params.id];
+  client.query(sql, newValues).then(() => {
+      res.redirect('/');
+  })
+};
+
+app.delete('/books/:id', deleteBook);
+
+function deleteBook(req, res) {
+    console.log("ddddddddddddddddddddddddddddddddddddddddddd");
+  const bookId = req.params.id;
+  let SQL = `DELETE FROM books WHERE id=${bookId}`
+  client.query(SQL)
+  .then( data=>{
+    res.redirect("/");
+  });
+}
+// end of update and delete
 
     function SavedBook(booksData) {
         function BookObject(booksData) {
