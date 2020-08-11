@@ -116,7 +116,18 @@ app.post('/searches', (req,res) => {                //search results
 
     app.post('/books', (req,res) => {
         console.log(req.body);
-        res.status(200).send(req.body);
+        let SQL = "INSERT INTO books (author, title, isbn, image_url, description, bookshelf) VALUES ($1,$2,$3,$4,$5,$6)";
+    let values = [req.body.author, req.body.title, req.body.isbn, req.body.image_url,req.body.description,req.body.bookshelf];
+    client.query(SQL, values).then(() => {
+        let SQL2 = `SELECT * FROM books;`;
+        client.query(SQL2).then(data2=>{
+            console.log(data2.rows[data2.rows.length-1])
+            res.render("pages/books/show", { bookDetail : data2.rows[data2.rows.length-1]});
+          })
+      
+        //res.render('pages/searches/show', {booksResult: returnedBooksData});
+    });
+       // res.status(200).send(req.body);
     });
 
     function SavedBook(booksData) {
