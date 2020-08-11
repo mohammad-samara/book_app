@@ -83,7 +83,7 @@ app.post('/searches', (req,res) => {                //search results
     let searchType = req.body.searchType;
     let searchKeyWord = req.body.searchKeyWord;
     getGoogleBooks(searchType, searchKeyWord).then((returnedBooksData) => {
-        //console.log(returnedBooksData);
+        console.log(returnedBooksData);
         res.render('pages/searches/show', {booksResult: returnedBooksData});
 
     })
@@ -99,7 +99,6 @@ app.post('/searches', (req,res) => {                //search results
     }
 
     function Books(booksData) {
-        //let weatherArr = [];
         function BookObject(booksData) {
             this.image = booksData.volumeInfo.imageLinks.thumbnail || 'https://i.imgur.com/J5LVHEL.jpg';
             this.title = booksData.volumeInfo.title || "not found";
@@ -107,6 +106,7 @@ app.post('/searches', (req,res) => {                //search results
             this.description = booksData.volumeInfo.description || "not found";
             this.ISBN = `${booksData.volumeInfo.industryIdentifiers[0].type} ${booksData.volumeInfo.industryIdentifiers[0].identifier}` || "not found";
             this.id = booksData.id || "not found";
+            this.bookshelf = ((booksData.volumeInfo.categories) ? booksData.volumeInfo.categories[0] : "not found");
         };
     
         let newObj = new BookObject(booksData);
@@ -114,8 +114,23 @@ app.post('/searches', (req,res) => {                //search results
         return newObj;
     };
 
+    app.post('/books', (req,res) => {
+        console.log(req.body);
+        let SQL = "INSERT INTO books (author, title, isbn, image_url, description, bookshelf) VALUES ($1,$2,$3,$4,$5,$6)";
+    let values = [req.body.author, req.body.title, req.body.isbn, req.body.image_url,req.body.description,req.body.bookshelf];
+    client.query(SQL, values).then(() => {
+        let SQL2 = `SELECT * FROM books;`;
+        client.query(SQL2).then(data2=>{
+            console.log(data2.rows[data2.rows.length-1])
+            res.render("pages/books/show", { bookDetail : data2.rows[data2.rows.length-1]});
+          })
+      
+        //res.render('pages/searches/show', {booksResult: returnedBooksData});
+    });
+       // res.status(200).send(req.body);
+    });
+
     function SavedBook(booksData) {
-        //let weatherArr = [];
         function BookObject(booksData) {
             this.image = booksData.volumeInfo.imageLinks.thumbnail || 'https://i.imgur.com/J5LVHEL.jpg';
             this.title = booksData.volumeInfo.title || "not found";
