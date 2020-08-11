@@ -4,7 +4,7 @@ $('#toggleBar').on('click', function(){
 
 $('.toggle-form').on('click', function(){
     // $('.add-book').toggle();
-    $(this).next().toggle();
+    $(this).next().slideToggle();
 });
 
 $('#editData').on('click', function(){
