@@ -152,6 +152,7 @@ p.isbn, p.bookshelf{
 }
 #editData, .deleteData{
     width: 40%;
+    display: inline-block;
 }
 button a{
     text-decoration: none;
