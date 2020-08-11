@@ -12,6 +12,8 @@ const pg = require('pg');  // sql first step in intializing
 const superagent = require('superagent');
 const { response, query } = require('express');
 const client = new pg.Client(process.env.DATABASE_URL);
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
 
 //routes
 // app.get('/', (req, res) => {
@@ -129,6 +131,29 @@ app.post('/searches', (req,res) => {                //search results
     });
        // res.status(200).send(req.body);
     });
+
+    // update and delete
+    app.put('/update/:book_id', updateBook)
+function updateBook(req, res) {
+  let {updatedTitle, updatedAuthor,updatedDescription,updatedISBN,updatedBookshelf} = req.body;
+  let sql = `UPDATE booksdb SET title=$1,author=$2,description=$3,ISBN=$4,bookshell=$5 WHERE id =$6;`;
+  let newValues = [updatedTitle,updatedAuthor,updatedDescription,updatedISBN,updatedBookshelf,req.params.book_id];
+  client.query(sql, newValues).then(() => {
+      res.redirect('/');
+  })
+};
+
+app.get('/delItem/:id', deleteBook)
+
+function deleteBook(req, res) {
+  const bookId = req.params.id;
+  let SQL = `DELETE FROM booksdb WHERE id=${bookId}`
+  client.query(SQL)
+  .then( data=>{
+    res.redirect("/");
+  });
+}
+// end of update and delete
 
     function SavedBook(booksData) {
         function BookObject(booksData) {

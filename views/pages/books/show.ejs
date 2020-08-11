@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../styles/base.css">
     <link rel="stylesheet" href="../styles/layout.css">
     <link rel="stylesheet" href="../styles/modules.css">
-    
+
 </head>
 
 <body>
@@ -30,8 +30,8 @@
     <main>
         <div class="added">
             <div id="loadedResults">
-                
-                
+
+
                 <section class="bookInfo">
                     <img class="bookCover" src="<%= bookDetail.image_url %>" alt="">
                     <h2 class="bookTitle"><%= bookDetail.title %></h2>
@@ -40,12 +40,37 @@
                     <p class="isbn"><%= bookDetail.isbn %></p>
                     <p class="bookshelf">bookshelf: <%= bookDetail.bookshelf %></p>
                 </section>
-                
-        </div>
+
+                <button id="editData">Edit Content</button>
+
+                <form class="updateDataForm" action="/update/<%= bookDetail.id %>?_method=put" method="post">
+                    <label for="">Title:</label> <br />
+                    <input type="text" name="updatedTitle" value="<%= bookDetail.title %>"> <br />
+                    <label for="">Author:</label> <br />
+                    <input type="text" name="updatedAuthor" value="<%= bookDetail.author %>"> <br />
+                    <label for="">ISBN:</label> <br />
+                    <input type="text" name="updatedISBN" value="<%= bookDetail.isbn %>"> <br />
+
+                    <label for="">Image URL:</label> <br />
+                    <input type="text" name="updatedImage_url" value="<%= bookDetail.image_url %>"> <br />
+
+                            <label for="updatedDescription">Describtion:</label> <br />
+                            <textarea id="updatedDescription" style="resize: none; width: 90%; height: 10em;" name="updatedBookshelf"><%= bookDetail.description %> </textarea> <br />
+
+                    
+                    <label for="">Catgory:<input type="text" name="updatedBookshelf" value="<%= bookDetail.bookshelf %>"
+                            class="catigoryText"></label> <br />
+                    <button class="btnSave" type="submit">Save</button>
+
+                </form>
+
+                <button class="del"><a href='/delItem/<%= bookDetail.id %>'>Delete</a></button>
+
+            </div>
     </main>
-<footer></footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="../js/app.js"></script>
+    <footer></footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../js/app.js"></script>
 </body>
 
 </html>

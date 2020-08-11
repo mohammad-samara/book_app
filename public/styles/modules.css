@@ -138,6 +138,23 @@ p.isbn, p.bookshelf{
     margin-bottom: 8px;
     color: rgb(35, 46, 46);
 }
+.updateDataForm{
+    display: none;
+}
+.updateDataForm input{
+    width: 90%;
+    height: 2em;
+}
+#loadedResults button, #loadedResults form button{
+    text-align: center;
+    color: white;
+    font-size: large;
+}
+button a{
+    text-decoration: none;
+    color: white;
+    font-size: large;
+}
 /* search results */
 form.add-book{
     display: none;
