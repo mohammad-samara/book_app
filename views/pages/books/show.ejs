@@ -43,12 +43,12 @@
 
                 <button id="editData">Edit Content</button>
 
-                <form class="deleteData" action="/delete/<%= bookDetail.id %>?_method=delete" method="post">
+                <form class="deleteData" action="/books/<%= bookDetail.id %>?_method=delete" method="post">
                     <button type="submit">Delete</button>
                 </form>
 
                 <!-- <button class="deleteData"><a href='/delItem/<%= bookDetail.id %>'>Delete</a></button> -->
-                <form class="updateDataForm" action="/update/<%= bookDetail.id %>?_method=put" method="post">
+                <form class="updateDataForm" action="/books/<%= bookDetail.id %>?_method=put" method="post">
                     <label for="">Title:</label> <br />
                     <input type="text" name="updatedTitle" value="<%= bookDetail.title %>"> <br />
                     <label for="">Author:</label> <br />

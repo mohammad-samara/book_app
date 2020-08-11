@@ -133,7 +133,7 @@ app.post('/searches', (req,res) => {                //search results
     });
 
     // update and delete
-    app.put('/update/:id', updateBook);
+    app.put('/books/:id', updateBook);
 function updateBook(req, res) {
     console.log(req.body);
   let {updatedTitle, updatedAuthor,updatedISBN,updatedImage_url,updatedDescription,updatedBookshelf} = req.body;
@@ -144,7 +144,7 @@ function updateBook(req, res) {
   })
 };
 
-app.delete('/delete/:id', deleteBook);
+app.delete('/books/:id', deleteBook);
 
 function deleteBook(req, res) {
     console.log("ddddddddddddddddddddddddddddddddddddddddddd");
