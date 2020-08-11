@@ -144,9 +144,10 @@ function updateBook(req, res) {
   })
 };
 
-app.delete('/delItem/:id', deleteBook);
+app.delete('/delete/:id', deleteBook);
 
 function deleteBook(req, res) {
+    console.log("ddddddddddddddddddddddddddddddddddddddddddd");
   const bookId = req.params.id;
   let SQL = `DELETE FROM books WHERE id=${bookId}`
   client.query(SQL)
