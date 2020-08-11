@@ -150,10 +150,17 @@ p.isbn, p.bookshelf{
     color: white;
     font-size: large;
 }
+#editData, .deleteData{
+    width: 40%;
+}
 button a{
     text-decoration: none;
     color: white;
     font-size: large;
+    display: block;
+}
+button{
+    padding: 0px;
 }
 /* search results */
 form.add-book{

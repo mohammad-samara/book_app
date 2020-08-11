@@ -42,7 +42,7 @@
                 </section>
 
                 <button id="editData">Edit Content</button>
-
+                <button class="deleteData"><a href='/delItem/<%= bookDetail.id %>'>Delete</a></button>
                 <form class="updateDataForm" action="/update/<%= bookDetail.id %>?_method=put" method="post">
                     <label for="">Title:</label> <br />
                     <input type="text" name="updatedTitle" value="<%= bookDetail.title %>"> <br />
@@ -64,7 +64,7 @@
 
                 </form>
 
-                <button class="del"><a href='/delItem/<%= bookDetail.id %>'>Delete</a></button>
+                
 
             </div>
     </main>
