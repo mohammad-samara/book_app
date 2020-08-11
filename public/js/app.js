@@ -3,5 +3,6 @@ $('#toggleBar').on('click', function(){
 });
 
 $('.toggle-form').on('click', function(){
-    $('.add-book').toggle();
+    // $('.add-book').toggle();
+    $(this).next().toggle();
 });
